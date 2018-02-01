@@ -1,0 +1,317 @@
+* {
+box-sizing: border-box;
+}
+*:focus {
+	outline: none;
+}
+.acct {
+	margin: 0px;
+	padding: 5px auto 5px;
+	border: 0px;
+	color: #444;
+	font-size: 20px;
+}
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+.app-title {
+	text-align: center;
+	color: #FFF;
+	font-size: 30px;
+	padding: 10px;
+}
+.app-title-home {
+	width: 150px;
+	text-align: left;
+	padding: 0px;
+	float: left;
+}
+body {
+	font-family: Arial;
+	background-color: #3498DB;
+	padding: 0px;
+}
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 0px;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+  height: 42px;
+}
+.btn:hover {
+  background-color: #2980B9;
+}
+.control-group {
+  margin-bottom: 15px;
+}
+.dropbtn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 0px;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 75px;
+  margin: 0 auto;
+  height: 42px;
+  cursor: pointer;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  z-index: 999;
+}
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropbtn {
+  background-color: #2980B9;
+}
+.taskbar {
+	margin: 0px;
+	padding: 0px 0px 4px 0px;
+	border: 0px;
+	color: #444;
+	font-size: 20px;
+}
+.feed-frame {
+  background-color: #FFF;
+  padding: 13px 20px 11px 20px;
+  border-radius: 5px;
+	margin: 0px 0px 5px 0px;
+}
+.iframely-embed {
+	margin: 0 auto;
+}
+.imag {
+  max-width:100%;
+  height:auto;
+  width:auto;
+}
+.center {
+  text-align: center;
+  max-height: 100vh;
+}
+.center * { max-height: 100vh; overflow: hidden;}
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+input {
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+}
+input:focus {
+  border: 2px solid #3498DB;
+  box-shadow: none;
+}
+.login {
+	margin: 0px auto;
+	width: 300px;
+}
+.login-field {
+	height: 29px;
+}
+.login-form {
+	text-align: center;
+}
+.login-link {
+  font-size: 12px;
+  color: #444;
+  display: block;
+	margin-top: 0px;
+}
+.login-screen {
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 5px;
+}
+.login-text {
+	text-align: center;
+	color: #777;
+}
+/* http://jsfiddle.net/jonathansampson/sDaNN/ */
+.preview {
+	width: 500px;
+  height: 384px;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+}
+.preview iframe {
+  width: 1020px; height: 768px;
+	-webkit-transform: scale(.5); -webkit-transform-origin: 0 0;
+	-moz-transform: scale(.5); -moz-transform-origin: 0 0;
+	-ms-transform: scale(.5); -ms-transform-origin: 0 0;
+	-o-transform: scale(.5); -o-transform-origin: 0 0;
+	transform: scale(.5); transform-origin: 0 0;
+}
+.preview:after,
+.preview::after {
+  content: "";
+  display: block;
+  position: absolute;
+	width: 100%; height: 100%;
+  top: 0; left: 0;
+}
+.sorts {
+  float: left;
+}
+.toolbar {
+  float: left;
+}
+.text-button {
+	background:none!important;
+	border:none;
+	padding:0!important;
+	font: inherit;
+	cursor: pointer;
+	width: 66px;
+	color: #3498DB;
+}
+.top {
+  margin-top: 16px;
+}
+.username-logout {
+  text-align: right;
+  color: #444;
+  font-size: 14px;
+  height: 50px;
+  float: right;
+  color:inherit;
+}
+.username-frame {
+  background-color: #FFF;
+  padding: 7px;
+  border-radius: 3px;
+}
+/* Dropdown Menu */
+.styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}
+.styled-select select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 268px;
+}
+.styled-select.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+.rounded {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+.blue    { background-color: #3498DB; }
+.blue select    { color: #fff; }
+#mainselection select {
+   border: 0;
+   color: #EEE;
+   background: transparent;
+   font-size: 20px;
+   font-weight: bold;
+   padding: 2px 10px;
+   width: 378px;
+   *width: 350px;
+   *background: #58B14C;
+   -webkit-appearance: none;
+}
+#mainselection {
+   overflow:hidden;
+   width:350px;
+   -moz-border-radius: 9px 9px 9px 9px;
+   -webkit-border-radius: 9px 9px 9px 9px;
+   border-radius: 9px 9px 9px 9px;
+   box-shadow: 1px 1px 11px #330033;
+   background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
+}
+select#soflow, select#soflow-color {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}
+select#soflow-color {
+   color: #fff;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);
+   background-color: #779126;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   padding-left: 15px;
+}

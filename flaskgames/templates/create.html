@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+<head>
+  <title>Lynx</title>
+</head>
+<div class="app-title">
+  <a href='/'><img src="/static/logo.png" height="170" alt="Lynx"></a>
+</div>
+<br>
+<div class="login">
+  <div class="login-screen">
+    <div class="login-form">
+        <div class="acct">
+          Choose a Username
+          <br><br>
+        </div>
+      <form action="/created" method="POST">
+				<div class="control-group">
+				  <input type="text" class="login-field" value="" placeholder="username" name="username">
+				  <label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+        <div>
+          <input type="submit" value="create" class="btn btn-primary btn-large btn-block">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

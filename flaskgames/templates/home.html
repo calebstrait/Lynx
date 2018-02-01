@@ -1,0 +1,244 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+<head>
+  <title>Lynx</title>
+</head>
+<script async charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key=5cb8504ea0e83577845b2b&maxheight=100vh"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+  function toggleCommentDiv(key) {
+    var e = document.getElementById("commentDiv"+(key).toString());
+    if (e.style.display === "none") {
+      e.style.display = "block";
+    } else {
+      e.style.display = "none";
+    }
+  }
+  function pythonNoReload(route) {
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+        return True;
+    };
+    request.open("GET", route, true);
+    request.send();
+  }
+  function addComment(username,content,time,parentID) {
+    pythonNoReload("/commentAdd"); //But hidden info?
+
+    var divX = document.createElement("div");
+    divX.style.padding = "3px 0px 0px 0px";
+    divX.id = "divX" + getRandomInt(0, 9999999).toString();
+
+    var div1 = document.createElement("div");
+    div1.style.textAlign = "left";
+    div1.style.color = "#3498DB";
+    div1.innerHTML = username;
+
+    var div2 = document.createElement("div");
+    div2.style.textAlign = "left";
+    div2.style.padding = "0px 0px 0px 15px";
+    div2.innerHTML = content;
+
+    var div3 = document.createElement("div");
+    div3.style.textAlign = "left";
+    div3.style.padding = "0px 0px 0px 15px";
+    div3.style.color = "#909090";
+    div3.innerHTML = time;
+
+    document.getElementById(parentID).appendChild(divX);
+    document.getElementById(divX.id).appendChild(div1);
+    document.getElementById(divX.id).appendChild(div2);
+    document.getElementById(divX.id).appendChild(div3);
+  }
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+</script>
+<body>
+  <div class="app-title-home">
+    <a href='/'>
+      <img src="/static/logo.png" height="70" alt="Lynx" style="padding-bottom: 5;">
+    </a>
+  </div>
+  <div class="username-logout">
+    <div class="username-frame">
+      <div class="username">
+        {{username}}
+        <a href="/logout" onclick="signOut();">logout</a>
+        <script>
+          function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut();
+            window.location = "/logout";
+            return false;
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+  <div class="feeds">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="width: 12%;"></td>
+        <td style="width: 41%; vertical-align: top;">
+          <div class="feed-frame" style="padding: 13 13 9 13;">
+            <div class="login-form">
+              {% if dictBoardsEmpty == false %}
+              <div>
+                <form action="/linkpaste" method="POST" style="margin: 0 0 0 0;">
+                  <table style="margin: 0 auto;">
+                    <tr>
+                      <td>
+            				    <input type="text" class="login-field" value="" placeholder="link" name="linkpaste" style="width: 182px;">
+            				  </td>
+                      <td>
+                        <input type="text" class="login-field" value="" placeholder="title" name="linktitle" maxlength="50" style="width: 183px;">
+                      </td>
+                      <td>
+                        <div class="styled-select blue semi-square">
+                          <select name="board_ID">
+                            {% for key, value in dictBoards.items() %}
+                              <option value="{{ value["board_ID"] }}">{{ value["title"] }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </td>
+                      <td>
+                        <input type="submit" value="submit" class="btn btn-primary btn-large btn-block" style="height: 29px; line-height: 0px; width: 120px;">
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+              {% endif %}
+              <div class="taskbar" style="padding: 0 0 0 0; margin: 0 0 0 0;">
+                <table style="height: 40px; margin: 0 auto;">
+                  <tr>
+                    <form action="/boardpaste" method="POST">
+                      <td>
+            				    <input type="text" class="login-field" value="" placeholder="board code" name="boardpaste" style="width: 169px;">
+            				  </td>
+                      <td>
+                        <input type="submit" value="subscribe" class="btn btn-primary btn-large btn-block" style="height: 29px; line-height: 0px; width: 120px;">
+                      </td>
+                    </form>
+                    <form action="/boardcreate" method="POST">
+                      <td>
+                        <input type="text" class="login-field" value="" placeholder="board name" name="boardcreate" style="width: 169px;">
+                      </td>
+                      <td>
+                        <input type="submit" value="create" class="btn btn-primary btn-large btn-block" style="height: 29px; line-height: 0px; width: 120px;">
+                      </td>
+                    </form>
+                    {#<td>
+                    <div class="styled-select blue semi-square">
+                      <select name="board_ID" onchange="copytoclipboard(this)">
+                          <option selected="selected" value="default">copy board code</option>
+                        {% for key, value in dictBoards.items() %}
+                          <option id="brd{{ key }}" value="{{ value["board_ID"] }}">{{ value["title"] }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </td>#}
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          {% for key, value in dictLinks.items() | reverse %}
+            <div class="feed-frame">
+              <div id="banner{{ key }}" style="width: 100%; height: 29px; text-align: right; padding: 0 0 0 0;">
+                <font size="3">
+                  <table style="table-layout:fixed; width: 100%; height: 26px; border-spacing: 0px; padding: 3 0 0 0;">
+                    <tr>
+                      <td>
+                        <div class="alignleft" style="text-align: left;">{{ value["ltitle"] }}</div>
+                        {% if value["ltitle"] == "" %}
+                          <div class="alignleft" style="text-align: left;color: #3498DB;">{{ value["creator"] }}</div>
+                        {% else %}
+                          <div class="alignleft" style="text-align: left;color: #3498DB; padding-left: 15px;">{{ value["creator"] }}</div>
+                        {% endif %}
+                        <div class="alignleft" style="text-align: left;color: #808080; padding-left: 15px;">{{ value["board_title"] }}</div>
+                      </td>
+                      <td>
+                        {% if value["creator"] == username %}
+                        <div class="alignright" style="text-align: right; padding-left: 10px;">
+                          <form action="/remove" method="POST" style=" margin: 0px;">
+                            <input type="submit" name="remove" value="delete" class="text-button" style="width: 66px; height: 22px; line-height: 0px;">
+                            <input type="hidden" name="title" value="{{ value["ltitle"] }}"/>
+                            <input type="hidden" name="link" value="{{ value["link"] }}"/>
+                            <input type="hidden" name="board_ID" value="{{ value["board_ID"] }}"/>
+                          </form>
+                        </div>
+                        {% endif %}
+                        {#<div class="alignright" style="text-align: right; padding-left: 10px;">
+                          <form action="javascript:toggleCommentDiv({{ key }});" method="POST" style=" margin: 0px;">
+                            <input type="submit" name="comments" value="toggle" class="btn" style="width: 80px; height: 22px; line-height: 0px;">
+                          </form>
+                        </div>#}
+                      </td>
+                    </tr>
+                  </table>
+                </font>
+              </div>
+              <div class="center">
+                <a href="{{ value["link"] }}" data-iframely-url></a>
+              </div>
+              <form action="/commentAdd" method="POST" style="margin: 6 0 0 0;">
+                <table style="width: 100%; height: 22px;">
+                  <tr>
+                    <td style="width: 90%; height: 22px;">
+                      <input type="text" class="login-field" value="" placeholder="comment" name="comment_content" style="width: 100%; height: 22px;">
+                    </td>
+                    <td style="width: 10%; padding: 0px;">
+                      <input type="hidden" name="board_ID" value="{{ value["board_ID"] }}"/>
+                      <input type="hidden" name="link_ID" value="{{ value["link_ID"] }}"/>
+                      <input type="submit" value="post" class="btn btn-primary btn-large btn-block" style="width: 100%; height: 22px; line-height: 0px;">
+                    </td>
+                  <tr>
+                </table>
+              </form>
+              <div id="commentDiv{{ key }}" style="width: 100%; overflow: auto; padding: 0;">
+                {% for keyC, valueC in dictComments[value["link_ID"]].items() %}
+                  <div style="padding-top: 3;">
+                    <div class="alignleft" style="text-align: left; color: #3498DB;">
+                      {{ valueC["username"] }}
+                    </div>
+                    <div class="alignleft" style="text-align: left; padding-left: 15px;">
+                      {{ valueC["content"] }}
+                    </div>
+                    <div class="alignleft" style="height: 18px; text-align: left; color: #909090; padding-left: 15px;">
+                      {{ valueC["time"] }}
+                    </div>
+                    {% if valueC["username"] == username %}
+                      <div class="alignleft" style="text-align: left;">
+                        <form action="/commentRemove" method="POST" style=" margin: 0px;">
+                          <input type="submit" name="cremove" value="delete" class="text-button">
+                          <input type="hidden" name="comment_ID" value="{{ valueC["comment_ID"] }}"/>
+                        </form>
+                      </div>
+                    {% endif %}
+                    <br>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </td>
+        <td style="width: 12%;"></td>
+       </tr>
+     </table>
+  </div>
+  <div style="text-align:center;">
+    <font color="white">
+    {% for key, value in dictBoards.items() %}
+      {{ value["title"] }}: {{ value["board_ID"] }}
+      <a href='/unsub?b={{ value["board_ID"] }}' style="color:inherit; text-decoration:none;">unsubscribe</a>
+      <br>
+    {% endfor %}
+    </font>
+  </div>
+</body>

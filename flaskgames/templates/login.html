@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+<head>
+  <br><br><br><br><br><br><br>
+  <title>Lynx</title>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="885982122839-ogpamdsmq6jij7j3tphc40cr9cqco7o6.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="app-title">
+    <a href='/'><img src="/static/logo.png" height="170" alt="Lynx"></a>
+  </div>
+  <br>
+  <div class="login" style="width: 160px;">
+    <div class="login-screen" style="width: 160px;">
+      <div class="login-form" style="width: 120px;">
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width: 120px;"></div>
+        <script>
+          function onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            window.location = "/after_login?id_token=" + id_token;
+            return false;
+          };
+        </script>
+      </div>
+    </div>
+  </div>
+</body>

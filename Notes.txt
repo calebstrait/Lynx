@@ -1,0 +1,7 @@
+Lynx Notes
+EIP: 34.216.116.250
+
+ns-1355.awsdns-41.org.
+ns-1796.awsdns-32.co.uk.
+ns-70.awsdns-08.com.
+ns-956.awsdns-55.net.
